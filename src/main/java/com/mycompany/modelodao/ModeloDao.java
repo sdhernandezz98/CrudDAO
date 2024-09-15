@@ -34,10 +34,10 @@ public class ModeloDao {
     }
 
     
-       
+    /*   
     RequestDao RequestDao = new RequestDaoImpl();
     Request rql = RequestDao.read(119);
     System.out.println(rql.toString());
     }  
-    
+    */
 }
