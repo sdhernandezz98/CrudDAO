@@ -11,15 +11,17 @@ import Model.Conexion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class RequestDaoImpl implements RequestDao{
 
     @Override
     public String register(Request request) {
         
-    String resultado = "";
-    String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
+    String result = "";
+    /*String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
 
     try (Connection con = Conexion.getConnection();
          PreparedStatement ps = con.prepareStatement(sql)) {
@@ -36,16 +38,16 @@ public class RequestDaoImpl implements RequestDao{
         int rowsAffected = ps.executeUpdate();
         
         if (rowsAffected > 0) {
-            resultado = "Registro exitoso";
+            result = "Registro exitoso";
         } else {
-            resultado = "No se pudo registrar";
+            result = "No se pudo registrar";
         }
     } catch (SQLException e) {
         e.printStackTrace();
-        resultado = "Error en la base de datos: " + e.getMessage();
+        result = "Error en la base de datos: " + e.getMessage();
     }
-    
-    return resultado;
+    */
+    return result;
         
     }
 
@@ -65,8 +67,39 @@ public class RequestDaoImpl implements RequestDao{
     }
 
     @Override
-    public Request read(int clave) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Request read(int id) {
+        Request rql = null;
+        String sql = "SELECT * FROM request WHERE id = ?;";
+        
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+         
+        // Configura los parámetros del PreparedStatement
+        ps.setInt(1, id);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()) {
+            //int oid = rs.getInt("id");
+            int id_employees = rs.getInt("id_employees");
+            Timestamp date_request = rs.getTimestamp("date_request");
+            String comment = rs.getString("comment");
+            Date date_start = rs.getDate("date_start");
+            Timestamp date_final = rs.getTimestamp("date_final");
+            int id_tipe_request = rs.getInt("id_tipe_request");
+            
+        rql = new Request(id, id_employees, id_tipe_request,  date_start, date_request, date_final, comment);
+
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        
     }
+      
+     return rql;   
+}
+
+    
     
 }

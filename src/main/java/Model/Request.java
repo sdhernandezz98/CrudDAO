@@ -4,90 +4,90 @@
  */
 package Model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 
 public class Request {
     private int id,idEmployees,idTypeRequest;
-    private Date datarequest,dateStart,dateFinal;
+    private Date dateStart;
+    private Timestamp datarequest, dateFinal;
     private String comment;
 
-    public Request(int id, int idEmployees, int idTypeRequest, Date datarequest, Date dateStart, Date dateFinal, String comment) {
+    public Request(int id, int idEmployees, int idTypeRequest, Date dateStart, Timestamp datarequest, Timestamp dateFinal, String comment) {
         this.id = id;
         this.idEmployees = idEmployees;
         this.idTypeRequest = idTypeRequest;
-        this.datarequest = datarequest;
         this.dateStart = dateStart;
+        this.datarequest = datarequest;
         this.dateFinal = dateFinal;
         this.comment = comment;
     }
 
     public Request() {
     }
-    
-    
-    
-    public int getId() {
-        return id;
+
+    @Override
+    public String toString() {
+        return "Request{" + "id=" + id + ", idEmployees=" + idEmployees + ", idTypeRequest=" + idTypeRequest + ", dateStart=" + dateStart + ", datarequest=" + datarequest + ", dateFinal=" + dateFinal + ", comment=" + comment + '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    public int getId() {
+        return id;
     }
 
     public int getIdEmployees() {
         return idEmployees;
     }
 
-    public void setIdEmployees(int idEmployees) {
-        this.idEmployees = idEmployees;
-    }
-
     public int getIdTypeRequest() {
         return idTypeRequest;
-    }
-
-    public void setIdTypeRequest(int idTypeRequest) {
-        this.idTypeRequest = idTypeRequest;
-    }
-
-    public Date getDatarequest() {
-        return datarequest;
-    }
-
-    public void setDatarequest(Date datarequest) {
-        this.datarequest = datarequest;
     }
 
     public Date getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
+    public Timestamp getDatarequest() {
+        return datarequest;
     }
 
-    public Date getDateFinal() {
+    public Timestamp getDateFinal() {
         return dateFinal;
-    }
-
-    public void setDateFinal(Date dateFinal) {
-        this.dateFinal = dateFinal;
     }
 
     public String getComment() {
         return comment;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIdEmployees(int idEmployees) {
+        this.idEmployees = idEmployees;
+    }
+
+    public void setIdTypeRequest(int idTypeRequest) {
+        this.idTypeRequest = idTypeRequest;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public void setDatarequest(Timestamp datarequest) {
+        this.datarequest = datarequest;
+    }
+
+    public void setDateFinal(Timestamp dateFinal) {
+        this.dateFinal = dateFinal;
+    }
+
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-    @Override
-    public String toString() {
-        return "Request{" + "id=" + id + ", idEmployees=" + idEmployees + ", idTypeRequest=" + idTypeRequest + ", datarequest=" + datarequest + ", dateStart=" + dateStart + ", dateFinal=" + dateFinal + ", comment=" + comment + '}';
-    }
-    
     
     
 }

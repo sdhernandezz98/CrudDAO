@@ -11,18 +11,13 @@ import Model.Conexion;
 import Model.Request;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ModeloDao {
 
     public static void main(String[] args) {
        
-        
-       /* Connection con = Conexion.getConnection();
-        
-        if (con != null){
-            System.out.println("Exitoso");
-        
-        }*/
+    /*    
        
        RequestDao RequestDao = new RequestDaoImpl();
        Request request = new Request(
@@ -37,4 +32,9 @@ public class ModeloDao {
         String result = RequestDao.register(request);
         System.out.println(result);
     }
+*/
+    RequestDao RequestDao = new RequestDaoImpl();
+    Request rql = RequestDao.read(119);
+    System.out.println(rql.toString());
+    }  
 }
