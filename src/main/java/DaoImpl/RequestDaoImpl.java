@@ -21,14 +21,6 @@ public class RequestDaoImpl implements RequestDao{
     
     @Override
     public String register(Request request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
-    }
-
-
-
-    @Override
-    public String delete(Request request) {
     String result = "";
     String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -57,11 +49,43 @@ public class RequestDaoImpl implements RequestDao{
     }
 
     return result;
+        
+    }
+
+
+
+    @Override
+    public String delete(Request request) {
+        String result = "";
+        String sql = "DELETE FROM request WHERE id = ?;";
+        
+        try (Connection con = Conexion.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+         
+        // Configura los parámetros del PreparedStatement
+        ps.setInt(1, request.getId());
+        
+        // Ejecuta la sentencia
+        int rowsAffected = ps.executeUpdate();
+        
+        if (rowsAffected > 0) {
+            result = "Eliminación exitosa";
+        } else {
+            result = "No se encontró el registro para eliminar";
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        result = "Error en la base de datos: " + e.getMessage();
+    }
+
+    return result;
+        
+        
+        
     }
 
     @Override
     public String update(Request request) {
-        
         String result = "";
         String sql = "UPDATE request SET id_employees = ?, date_request = ?, comment = ?, date_start = ?, date_final = ?, id_tipe_request = ? WHERE id = ?;";
         

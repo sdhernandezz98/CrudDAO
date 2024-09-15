@@ -18,7 +18,7 @@ public class ModeloDao {
     public static void main(String[] args) {
        
        
-       /*
+       
        RequestDao RequestDao = new RequestDaoImpl();
         Request request = new Request(
             1,                                 // id
@@ -32,7 +32,7 @@ public class ModeloDao {
         String result = RequestDao.register(request);
         System.out.println(result);
     }
-*/
+
     
     /*   
     RequestDao RequestDao = new RequestDaoImpl();
@@ -41,6 +41,8 @@ public class ModeloDao {
     }  
     */
     
+    
+    /* 
     RequestDao RequestDao = new RequestDaoImpl();
         Request request = new Request(
             122,                                 // id
@@ -54,4 +56,13 @@ public class ModeloDao {
         String result = RequestDao.update(request);
         System.out.println(result);
         }
+     */
+    
+    /*
+        RequestDao RequestDao = new RequestDaoImpl();
+        Request result = RequestDao.get(116);
+        System.out.println(result);  
+        int result = RequestDao.delete(result)
+        System.out.println(result);  
+    */
 }
