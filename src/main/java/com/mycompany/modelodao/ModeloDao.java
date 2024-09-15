@@ -17,24 +17,27 @@ public class ModeloDao {
 
     public static void main(String[] args) {
        
-    /*    
+       
        
        RequestDao RequestDao = new RequestDaoImpl();
-       Request request = new Request(
-            115,                          // id
-            40,                        // idEmployees
-            8,                          // idTypeRequest
-            Date.valueOf("2024-09-12"),  // datarequest
+        Request request = new Request(
+            1,                                 // id
+            101,                               // idEmployees
+            5,                                 // idTypeRequest
             Date.valueOf("2024-09-17"),  // dateStart
-            Date.valueOf("2024-09-20"),  // dateFinal
-            "Vacaciones solicitadas"     // comment
+            new Timestamp(System.currentTimeMillis()),  // datarequest (timestamp actual)
+            new Timestamp(System.currentTimeMillis() + 86400000), // dateFinal (un día después)
+            "las vacaciones se dieron papa"            // comment
         );
         String result = RequestDao.register(request);
         System.out.println(result);
     }
-*/
+
+    
+       
     RequestDao RequestDao = new RequestDaoImpl();
     Request rql = RequestDao.read(119);
     System.out.println(rql.toString());
     }  
+    
 }

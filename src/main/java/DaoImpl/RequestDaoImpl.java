@@ -21,17 +21,17 @@ public class RequestDaoImpl implements RequestDao{
     public String register(Request request) {
         
     String result = "";
-    /*String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
 
     try (Connection con = Conexion.getConnection();
          PreparedStatement ps = con.prepareStatement(sql)) {
          
         // Configura los parámetros del PreparedStatement
         ps.setInt(1, request.getIdEmployees());
-        ps.setDate(2, (Date) request.getDatarequest());
+        ps.setTimestamp(2, (Timestamp) request.getDatarequest());
         ps.setString(3, request.getComment());
         ps.setDate(4, (Date) request.getDateStart());
-        ps.setDate(5, (Date) request.getDateFinal());
+        ps.setTimestamp (5, (Timestamp) request.getDateFinal());
         ps.setInt(6, request.getIdTypeRequest());
         
         // Ejecuta la sentencia
@@ -46,15 +46,12 @@ public class RequestDaoImpl implements RequestDao{
         e.printStackTrace();
         result = "Error en la base de datos: " + e.getMessage();
     }
-    */
+
     return result;
         
     }
 
-    @Override
-    public ArrayList<Request> searchAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public String delete(Request request) {
