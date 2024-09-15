@@ -17,9 +17,18 @@ import java.sql.Timestamp;
 
 public class RequestDaoImpl implements RequestDao{
 
+    
+    
     @Override
     public String register(Request request) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         
+    }
+
+
+
+    @Override
+    public String delete(Request request) {
     String result = "";
     String sql = "INSERT INTO request (id_employees, date_request, comment, date_start, date_final, id_tipe_request) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -48,19 +57,46 @@ public class RequestDaoImpl implements RequestDao{
     }
 
     return result;
-        
-    }
-
-
-
-    @Override
-    public String delete(Request request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public String update(Request request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        String result = "";
+        String sql = "UPDATE request SET id_employees = ?, date_request = ?, comment = ?, date_start = ?, date_final = ?, id_tipe_request = ? WHERE id = ?;";
+        
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+         
+        // Configura los parámetros del PreparedStatement
+        ps.setInt(1, request.getId());
+        ps.setInt(2, request.getIdEmployees());
+        ps.setInt(3, request.getIdTypeRequest());
+        ps.setDate(4, (Date) request.getDateStart());
+        ps.setTimestamp(5, (Timestamp) request.getDatarequest());
+        ps.setTimestamp (6, (Timestamp) request.getDateFinal());
+        ps.setString(7, request.getComment());
+
+
+
+        
+        
+        int rowsAffected = ps.executeUpdate();
+        
+        // Verifica si se actualizó alguna fila
+        if (rowsAffected > 0) {
+            result = "Actualización exitosa";
+        } else {
+            result = "No se encontró el registro para actualizar";
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        result = "Error en la base de datos: " + e.getMessage();
+    }
+    
+    return result;
+        
     }
 
     @Override
